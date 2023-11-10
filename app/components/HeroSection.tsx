@@ -22,7 +22,7 @@ const HeroSection = ()=> {
             <span className="font-semibold text-sky-800">
               Software Engineer | FrontEnd Developer{" "}
             </span>
-            based in Homs, SY. Working towards creating software that
+            based in Dubai , Arab United Emirates. Working towards creating software that
             makes life easier and more meaningful.
           </p>
           <Link
