@@ -10,7 +10,7 @@ const HeroSection = ()=> {
               <div className="flex flex-col text-center items-center justify-center animate-fadeIn animation-delay-2 my-10 py-16 sm:py-32 md:py-48 md:flex-row md:space-x-4 md:text-left">
 
         <div className ="md:w-1/2 md:mt-2">
-<Image src="/naji.jpg" alt="" width={300} height={300}  className="rounded-full shadow-2xl"
+<Image src="/naji.png" alt="" width={300} height={300}  className="rounded-full shadow-2xl"
 />
         </div>
 
