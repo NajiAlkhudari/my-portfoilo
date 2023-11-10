@@ -37,7 +37,7 @@ const AboutSection = () => {
               <span className="font-bold">{"highly ambitious"}</span>,
               <span className="font-bold">{" self-motivated"}</span>, and
               <span className="font-bold">{" driven"}</span> software engineer | FrontEnd Developer
-              based in Homs, SY.
+              based in Dubai, Arab United Emirates.
             </p>
             <br />
             <p>
