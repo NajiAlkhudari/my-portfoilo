@@ -60,7 +60,7 @@
                 navbar ? "block" : "hidden"
               }`}
             >
-              <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+              <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 cursor-pointer">
                 {NAV_ITEMS.map((item, idx) => {
                   return (  
                     <Link
@@ -96,9 +96,12 @@
                   </button>
                 )}
               </div>
+      
+
             </div>
           </div>
         </div>
+
       </header>
     )
   }
