@@ -22,6 +22,13 @@ const projects = [
  
   },
   {
+    name: "To do",
+          description:"Simple task manager system",
+    image: "/list.png",
+    github: "https://github.com/NajiAlkhudari/todo",
+    demo:"https://todo-eosin-iota.vercel.app/",
+  },
+  {
     name: "M.B.K for Salesperson Mangment System",
           description:
             "M.B.K  is a web app that Facilitate the operations of drug representatives using a multi-platform application",
