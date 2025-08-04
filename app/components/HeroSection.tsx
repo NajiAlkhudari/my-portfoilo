@@ -20,9 +20,9 @@ const HeroSection = ()=> {
           <p className="text-lg mt-4 mb-6 md:text-2xl">
             I&#39;m a{" "}
             <span className="font-semibold text-sky-800">
-              Software Engineer | FrontEnd Developer{" "}
+              Software Engineer | FullStack Developer{" "}
             </span>
-            based in Dubai , Arab United Emirates. Working towards creating software that
+            based in Homs , Syria. Working towards creating software that
             makes life easier and more meaningful.
           </p>
           <Link

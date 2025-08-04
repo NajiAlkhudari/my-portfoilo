@@ -1,5 +1,5 @@
-import React from "react"
-import Image from "next/image"
+import React from "react";
+import Image from "next/image";
 
 const skills = [
   { skill: "HTML5" },
@@ -8,15 +8,21 @@ const skills = [
   { skill: "TypeScript" },
   { skill: "React js" },
   { skill: "Redux Toolkit" },
-  { skill: "Material UI" },
+  { skill: "Zustand" },
+  { skill: "Component Reusable" },
   { skill: "Next.js" },
   { skill: "Tailwind CSS" },
-  { skill: "React Native"},
+  { skill: "React Native Expo" },
+  { skill: "Push Notifications" },
   { skill: "C#" },
-  { skill: "Asp.net Core Api"},
+  { skill: "Asp.net Core Api" },
+  { skill: "Entity Framework" },
+  { skill: "SQL Server" },
+  { skill: "PostgreSQL" },
+  { skill: "Domain-Driven Design" },
+  { skill: "Multitenancy" },
   { skill: "Git" },
-  { skill: "GitHub" },
-]
+];
 
 const AboutSection = () => {
   return (
@@ -36,27 +42,25 @@ const AboutSection = () => {
               Hi, my name is Naji and I am a{" "}
               <span className="font-bold">{"highly ambitious"}</span>,
               <span className="font-bold">{" self-motivated"}</span>, and
-              <span className="font-bold">{" driven"}</span> software engineer | FrontEnd Developer
-              based in Dubai, Arab United Emirates.
+              <span className="font-bold">{" driven"}</span> software engineer |
+              FrontEnd Developer based in Dubai, Arab United Emirates.
             </p>
             <br />
             <p>
-              I graduated from Kalamoon University in 2023
-              with a BS in Information Technology Engineering.
+              I graduated from Kalamoon University in 2023 with a BS in
+              Information Technology Engineering.
             </p>
             <br />
             <p>
               I have a wide range of hobbies and passions that keep me busy.
-              From reading, playing sports, traveling,
-              I am always seeking new experiences and love to keep myself
-              engaged and learning new things.
+              From reading, playing sports, traveling, I am always seeking new
+              experiences and love to keep myself engaged and learning new
+              things.
             </p>
             <br />
             <p>
               I believe that you should{" "}
-              <span className="font-bold text-sky-800">
-                never stop growing
-              </span>{" "}
+              <span className="font-bold text-sky-800">never stop growing</span>{" "}
               and that&#39;s what I strive to do, I have a passion for
               technology and a desire to always push the limits of what is
               possible. I am excited to see where my career takes me and am
@@ -74,7 +78,7 @@ const AboutSection = () => {
                   >
                     {item.skill}
                   </p>
-                )
+                );
               })}
             </div>
             {/* <Image
@@ -88,7 +92,7 @@ const AboutSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default AboutSection
+export default AboutSection;
