@@ -1,43 +1,38 @@
-import React from "react"
-import {
-  AiOutlineGithub,
-  AiOutlineTwitter,
-  AiOutlineLinkedin,
-  AiOutlineYoutube,
-} from "react-icons/ai"
+import { Github, Linkedin } from "lucide-react";
+import { socialLinks } from "../data/portfolio";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl ">
-      <hr className="w-full h-0.5 mx-auto mt-8 bg-neutral-200 border-0"></hr>
-      <div className="mx-auto  p-4 flex flex-col text-center text-neutral-900 md:flex-row md:justify-between">
-        <div className="flex flex-row items-center justify-center space-x-1 text-neutral-500 dark:text-neutral-100">
-          © 2024 Naji Alkhudari<a href="/" className="hover:underline"></a>
+    <footer className="px-4 pb-10 pt-6 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-[2rem] border border-white/10 bg-[rgb(var(--surface)/0.52)] px-6 py-6 backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="font-heading text-xl font-bold text-[rgb(var(--text))]">
+            Naji Alkhudari
+          </p>
+          <p className="mt-1 text-sm text-[rgb(var(--muted))]">
+            © {new Date().getFullYear()} Portfolio. Built with Next.js.
+          </p>
         </div>
-        <div className="flex flex-row items-center justify-center space-x-2 mb-1">
-          <a href="https://github.com/NajiAlkhudari" rel="noreferrer" target="_blank">
-            <AiOutlineGithub
-              className="hover:-translate-y-1 transition-transform cursor-pointer text-neutral-500 dark:text-neutral-100"
-              size={30}
-            />
-          </a>
-         
 
+        <div className="flex items-center gap-3">
           <a
-            href="https://www.linkedin.com/in/mouhammed/"
-            rel="noreferrer"
+            href={socialLinks.github}
             target="_blank"
+            rel="noreferrer"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[rgb(var(--text))] transition hover:-translate-y-0.5 hover:border-accent-blue/50 hover:text-accent-blue"
           >
-            <AiOutlineLinkedin
-              className="hover:-translate-y-1 transition-transform cursor-pointer text-neutral-500 dark:text-neutral-100"
-              size={30}
-            />
+            <Github size={18} />
           </a>
-      
+          <a
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[rgb(var(--text))] transition hover:-translate-y-0.5 hover:border-accent-purple/50 hover:text-accent-purple"
+          >
+            <Linkedin size={18} />
+          </a>
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
-export default Footer

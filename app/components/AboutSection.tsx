@@ -1,98 +1,67 @@
-import React from "react";
-import Image from "next/image";
+import SectionHeading from "./SectionHeading";
 
-const skills = [
-  { skill: "HTML5" },
-  { skill: "CSS" },
-  { skill: "JavaScript" },
-  { skill: "TypeScript" },
-  { skill: "React js" },
-  { skill: "Redux Toolkit" },
-  { skill: "Zustand" },
-  { skill: "Component Reusable" },
-  { skill: "Next.js" },
-  { skill: "Tailwind CSS" },
-  { skill: "React Native Expo" },
-  { skill: "Push Notifications" },
-  { skill: "C#" },
-  { skill: "Asp.net Core Api" },
-  { skill: "Entity Framework" },
-  { skill: "SQL Server" },
-  { skill: "PostgreSQL" },
-  { skill: "Domain-Driven Design" },
-  { skill: "Multitenancy" },
-  { skill: "Git" },
+const highlights = [
+  {
+    label: "Core Focus",
+    value: "Frontend, backend, and mobile",
+  },
+  {
+    label: "Approach",
+    value: "Reusable UI, strong architecture, practical UX decisions",
+  },
+  {
+    label: "Background",
+    value: "B.S. in Information Technology Engineering, 2023",
+  },
 ];
 
-const AboutSection = () => {
+export default function AboutSection() {
   return (
-    <section id="about">
-      <div className="my-12 pb-12 md:pt-16 md:pb-48">
-        <h1 className="text-center font-bold text-4xl">
-          About Me
-          <hr className="w-6 h-1 mx-auto my-4 bg-sky-900 border-0 rounded"></hr>
-        </h1>
+    <section id="about" data-section className="section-shell">
+      <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
+        <div className="space-y-6">
+          <SectionHeading
+            eyebrow="About"
+            title="Engineering with clarity, structure, and product awareness."
+            description="I design and build applications that balance visual quality with maintainable implementation. My work spans frontend interfaces, backend APIs, and mobile experiences, with an emphasis on reusable systems rather than one-off screens."
+          />
 
-        <div className="flex flex-col space-y-10 items-stretch justify-center align-top md:space-x-10 md:space-y-0 md:p-4 md:flex-row md:text-left">
-          <div className="md:w-1/2 ">
-            <h1 className="text-center text-2xl font-bold mb-6 md:text-left">
-              Get to know me!
-            </h1>
-            <p>
-              Hi, my name is Naji and I am a{" "}
-              <span className="font-bold">{"highly ambitious"}</span>,
-              <span className="font-bold">{" self-motivated"}</span>, and
-              <span className="font-bold">{" driven"}</span> software engineer |
-              FrontEnd Developer based in Dubai, Arab United Emirates.
-            </p>
-            <br />
-            <p>
-              I graduated from Kalamoon University in 2023 with a BS in
-              Information Technology Engineering.
-            </p>
-            <br />
-            <p>
-              I have a wide range of hobbies and passions that keep me busy.
-              From reading, playing sports, traveling, I am always seeking new
-              experiences and love to keep myself engaged and learning new
-              things.
-            </p>
-            <br />
-            <p>
-              I believe that you should{" "}
-              <span className="font-bold text-sky-800">never stop growing</span>{" "}
-              and that&#39;s what I strive to do, I have a passion for
-              technology and a desire to always push the limits of what is
-              possible. I am excited to see where my career takes me and am
-              always open to new opportunities. 🙂
-            </p>
-          </div>
-          <div className="text-center md:w-1/2 md:text-left">
-            <h1 className="text-2xl font-bold mb-6">My Skills</h1>
-            <div className="flex flex-wrap flex-row justify-center z-10 md:justify-start">
-              {skills.map((item, idx) => {
-                return (
-                  <p
-                    key={idx}
-                    className="bg-gray-200 px-4 py-2 mr-2 mt-2 text-gray-500 rounded font-semibold"
-                  >
-                    {item.skill}
-                  </p>
-                );
-              })}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-3xl border border-white/10 bg-[rgb(var(--surface)/0.64)] p-6 backdrop-blur">
+              <p className="text-sm uppercase tracking-[0.3em] text-sky-300/75">
+                Based In
+              </p>
+              <p className="mt-3 font-heading text-2xl text-[rgb(var(--text))]">
+                Homs, Syria
+              </p>
             </div>
-            {/* <Image
-              src="/hero-image.png"
-              alt=""
-              width={325}
-              height={325}
-              className="hidden md:block md:relative md:bottom-4 md:left-32 md:z-0"
-            /> */}
+            <div className="rounded-3xl border border-white/10 bg-[rgb(var(--surface)/0.64)] p-6 backdrop-blur">
+              <p className="text-sm uppercase tracking-[0.3em] text-sky-300/75">
+                Open To
+              </p>
+              <p className="mt-3 font-heading text-2xl text-[rgb(var(--text))]">
+                Full-time and freelance opportunities
+              </p>
+            </div>
           </div>
+        </div>
+
+        <div className="grid gap-4 self-end">
+          {highlights.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-[1.75rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-6 shadow-[0_18px_55px_rgba(10,15,30,0.18)] backdrop-blur"
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[rgb(var(--muted))]">
+                {item.label}
+              </p>
+              <p className="mt-3 text-lg leading-7 text-[rgb(var(--text))]">
+                {item.value}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}

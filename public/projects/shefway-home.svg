@@ -1,0 +1,51 @@
+<svg width="720" height="1560" viewBox="0 0 720 1560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="1560" rx="44" fill="#08101F"/>
+  <rect x="40" y="78" width="640" height="180" rx="36" fill="url(#hero)"/>
+  <circle cx="120" cy="168" r="40" fill="rgba(255,255,255,0.2)"/>
+  <rect x="178" y="126" width="240" height="30" rx="15" fill="white" fill-opacity="0.92"/>
+  <rect x="178" y="168" width="180" height="20" rx="10" fill="white" fill-opacity="0.56"/>
+  <rect x="56" y="320" width="608" height="74" rx="28" fill="#101A31"/>
+  <rect x="92" y="343" width="180" height="28" rx="14" fill="#40506D"/>
+  <g>
+    <rect x="56" y="450" width="292" height="352" rx="32" fill="#111C35"/>
+    <rect x="80" y="474" width="244" height="160" rx="28" fill="url(#card1)"/>
+    <rect x="80" y="666" width="140" height="28" rx="14" fill="white" fill-opacity="0.9"/>
+    <rect x="80" y="708" width="112" height="20" rx="10" fill="#7DD3FC"/>
+    <rect x="80" y="748" width="218" height="18" rx="9" fill="#4B5D7F"/>
+  </g>
+  <g>
+    <rect x="372" y="450" width="292" height="352" rx="32" fill="#111C35"/>
+    <rect x="396" y="474" width="244" height="160" rx="28" fill="url(#card2)"/>
+    <rect x="396" y="666" width="160" height="28" rx="14" fill="white" fill-opacity="0.9"/>
+    <rect x="396" y="708" width="126" height="20" rx="10" fill="#C4B5FD"/>
+    <rect x="396" y="748" width="202" height="18" rx="9" fill="#4B5D7F"/>
+  </g>
+  <rect x="56" y="864" width="608" height="284" rx="36" fill="#111C35"/>
+  <rect x="88" y="906" width="160" height="24" rx="12" fill="white" fill-opacity="0.88"/>
+  <rect x="88" y="954" width="540" height="30" rx="15" fill="#22314D"/>
+  <rect x="88" y="1004" width="470" height="30" rx="15" fill="#22314D"/>
+  <rect x="88" y="1054" width="400" height="30" rx="15" fill="#22314D"/>
+  <rect x="88" y="1108" width="540" height="14" rx="7" fill="#1A2741"/>
+  <rect x="56" y="1210" width="608" height="230" rx="40" fill="url(#footerCard)"/>
+  <rect x="92" y="1250" width="220" height="28" rx="14" fill="white" fill-opacity="0.94"/>
+  <rect x="92" y="1294" width="176" height="20" rx="10" fill="white" fill-opacity="0.64"/>
+  <rect x="92" y="1350" width="536" height="54" rx="27" fill="#0EA5E9"/>
+  <defs>
+    <linearGradient id="hero" x1="40" y1="78" x2="680" y2="258" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="80" y1="474" x2="324" y2="634" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB7185"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="396" y1="474" x2="640" y2="634" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#22C55E"/>
+    </linearGradient>
+    <linearGradient id="footerCard" x1="56" y1="1210" x2="664" y2="1440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111C35"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+  </defs>
+</svg>

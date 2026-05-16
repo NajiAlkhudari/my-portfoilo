@@ -1,107 +1,156 @@
-  "use client" // this is a client component
-  import React from "react"
-  import { useState } from "react"
-  import { Link } from "react-scroll/modules"
-  import { usePathname } from "next/navigation"
-  import { useTheme } from "next-themes"
-  import { RiMoonFill, RiSunLine } from "react-icons/ri"
-  import { IoMdMenu, IoMdClose } from "react-icons/io"
+"use client";
 
-  interface NavItem {
-    label :string
-    page: string
-  }
+import { useEffect, useMemo, useState } from "react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { useTheme } from "next-themes";
+import { navItems } from "../data/portfolio";
 
+export default function Navbar() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  const NAV_ITEMS: Array<NavItem> = [
-    {
-      label: "Home",
-      page: "home",
-    },
-    {
-      label: "About",
-      page: "about",
-    },
-    {
-      label: "Projects",
-      page: "projects",
-    },
-  ]
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  export default function Navbar() {
-    const { systemTheme, theme, setTheme } = useTheme()
-    const currentTheme = theme === "system" ? systemTheme : theme
-    const pathname = usePathname()
-    const [navbar, setNavbar] = useState(false)
-    return (
-      <header className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-stone-900 dark:border-b dark:border-stone-600">
-      <div className="justify-between md:items-center md:flex">
-          <div>
-            <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <Link to="home">
-                <div className="container flex items-center space-x-2">
-                  <h2 className="text-2xl font-bold">Naji Khudari</h2>
-                </div>
-              </Link>
-              <div className="md:hidden">
-                <button
-                  className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
-                  onClick={() => setNavbar(!navbar)}
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 18);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section]"));
+
+    if (!sections.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio);
+
+        if (visibleEntries[0]?.target.id) {
+          setActiveSection(visibleEntries[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0.2, 0.35, 0.5, 0.65],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const themeIcon = useMemo(() => {
+    if (!mounted) {
+      return (
+        <span className="block size-5 rounded-full border border-white/10 bg-white/10" />
+      );
+    }
+
+    return resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />;
+  }, [mounted, resolvedTheme]);
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
+      <div
+        className={[
+          "mx-auto max-w-7xl rounded-full border transition-all duration-300",
+          isScrolled
+            ? "border-white/12 bg-[rgb(var(--surface-strong)/0.82)] shadow-[0_20px_60px_rgba(10,15,30,0.35)] backdrop-blur-xl"
+            : "border-white/8 bg-[rgb(var(--surface)/0.52)] backdrop-blur-md",
+        ].join(" ")}
+      >
+        <div className="flex items-center justify-between px-5 py-3 sm:px-6">
+          <a href="#home" className="font-heading text-lg font-bold tracking-[0.16em] text-[rgb(var(--text))] sm:text-xl">
+            NAJI ALKHUDARI
+          </a>
+
+          <nav className="hidden items-center gap-2 md:flex">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.sectionId;
+
+              return (
+                <a
+                  key={item.sectionId}
+                  href={item.href}
+                  className={[
+                    "rounded-full px-4 py-2 text-sm font-medium transition-all duration-300",
+                    isActive
+                      ? "bg-gradient-to-r from-accent-blue/20 to-accent-purple/20 text-white shadow-[0_0_24px_rgba(14,165,233,0.15)]"
+                      : "text-[rgb(var(--muted))] hover:text-[rgb(var(--text))]",
+                  ].join(" ")}
                 >
-                  {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
-                </button>
-              </div>
-            </div>
-          </div>
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
 
-          <div>
-            <div
-              className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-                navbar ? "block" : "hidden"
-              }`}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="Toggle theme"
+              onClick={() =>
+                setTheme(resolvedTheme === "dark" ? "light" : "dark")
+              }
+              className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[rgb(var(--text))] transition hover:border-accent-blue/50 hover:text-accent-blue"
             >
-              <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0 cursor-pointer ">
-                {NAV_ITEMS.map((item, idx) => {
-                  return (  
-                    <Link
-                      key={idx}
-                      to={item.page}
-                      className={
-                        "block lg:inline-block text-neutral-900  hover:text-neutral-500 dark:text-neutral-100"
-                      }
-                      activeClass="active"
-                      spy={true}
-                      smooth={true}
-                      offset={-100}
-                      duration={500}
-                      onClick={() => setNavbar(!navbar)}
-                    >
-                      {item.label}
-                    </Link>
-                  )
-                })}
-                {currentTheme === "dark" ? (
-                  <button
-                    onClick={() => setTheme("light")}
-                    className="bg-slate-100 p-2 rounded-xl"
-                  >
-                    <RiSunLine size={25} color="black" />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => setTheme("dark")}
-                    className="bg-slate-100 p-2 rounded-xl"
-                  >
-                    <RiMoonFill size={25} />
-                  </button>
-                )}
-              </div>
-      
+              {themeIcon}
+            </button>
 
-            </div>
+            <button
+              type="button"
+              aria-label="Toggle navigation menu"
+              onClick={() => setIsOpen((current) => !current)}
+              className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[rgb(var(--text))] md:hidden"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
 
-      </header>
-    )
-  }
+        <div
+          className={[
+            "overflow-hidden px-3 transition-all duration-300 md:hidden",
+            isOpen ? "max-h-80 pb-4" : "max-h-0",
+          ].join(" ")}
+        >
+          <nav className="grid gap-2 rounded-3xl border border-white/8 bg-black/10 p-3">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.sectionId;
+
+              return (
+                <a
+                  key={item.sectionId}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={[
+                    "rounded-2xl px-4 py-3 text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-gradient-to-r from-accent-blue/20 to-accent-purple/20 text-white"
+                      : "text-[rgb(var(--muted))]",
+                  ].join(" ")}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+}
