@@ -86,90 +86,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "Reusable Components",
-    kind: "web",
-    description:
-      "A reusable component library and playground focused on adaptable UI building blocks, fast composition, and practical developer ergonomics.",
-    github: "https://github.com/NajiAlkhudari/componentReusable-and-basic-test",
-    demo: "https://component-reusable.vercel.app/",
-    techStack: ["React js", "Next.js", "Tailwind CSS", "TypeScript"],
-    slides: [
-      {
-        src: "/component.png",
-        alt: "Reusable Components showcase screen",
-        objectPosition: "top",
-      },
-      {
-        src: "/component.png",
-        alt: "Reusable Components component gallery",
-        objectPosition: "center",
-      },
-    ],
-  },
-  {
-    name: "A Class Transportation",
-    kind: "web",
-    description:
-      "A transportation management web application for the University of Kalamoon that streamlines operational workflows and administrative control.",
-    github: "https://github.com/NajiAlkhudari/React-js-App-",
-    demo: "/Admin.png",
-    techStack: ["React js", "Tailwind CSS", "Zustand", "Dashboard UI"],
-    slides: [
-      {
-        src: "/Admin.png",
-        alt: "A Class Transportation admin dashboard overview",
-        objectPosition: "top",
-      },
-      {
-        src: "/Admin.png",
-        alt: "A Class Transportation dashboard detail",
-        objectPosition: "center",
-      },
-    ],
-  },
-  {
-    name: "To Do",
-    kind: "web",
-    description:
-      "A focused task manager with a clean workflow for organizing daily work, tracking progress, and keeping the interface lightweight.",
-    github: "https://github.com/NajiAlkhudari/todo",
-    demo: "https://todo-eosin-iota.vercel.app/",
-    techStack: ["React js", "TypeScript", "Tailwind CSS", "UI States"],
-    slides: [
-      {
-        src: "/list.png",
-        alt: "To Do project task list screen",
-        objectPosition: "top",
-      },
-      {
-        src: "/list.png",
-        alt: "To Do project task details",
-        objectPosition: "center",
-      },
-    ],
-  },
-  {
-    name: "M.B.K",
-    kind: "web",
-    description:
-      "A salesperson management system built to support pharmaceutical representatives with multi-platform workflow visibility and team coordination.",
-    github: "https://github.com/NajiAlkhudari",
-    demo: "/mbk.png",
-    techStack: ["React js", "Asp.net Core Api", "SQL Server", "Multiplatform"],
-    slides: [
-      {
-        src: "/mbk.png",
-        alt: "M.B.K salesperson management dashboard",
-        objectPosition: "top",
-      },
-      {
-        src: "/mbk.png",
-        alt: "M.B.K workflow dashboard detail",
-        objectPosition: "center",
-      },
-    ],
-  },
-  {
     name: "ChefWay",
     kind: "mobile",
     description:
@@ -282,6 +198,31 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Wiket",
+    kind: "fullstack",
+    description:
+      "A service booking platform that allows vendors to register their businesses, add services with availability schedules and working hours, and manage bookings with full reporting. Customers browse available time slots and book services instantly. When a vendor confirms a booking, the customer receives a WhatsApp confirmation message.",
+    github: "",
+    demo: "",
+    techStack: [
+      "Next.js",
+      "Zustand",
+      "ASP.NET Core API",
+      "Email Integration",
+      "WhatsApp API",
+      "Real-time",
+      "Role-based Auth (Admin / Vendor / Customer)",
+    ],
+    images: [
+      "/projects/wiket/1.png",
+      "/projects/wiket/2.png",
+      "/projects/wiket/3.png",
+      "/projects/wiket/4.png",
+      "/projects/wiket/5.png",
+      "/projects/wiket/6.png",
+    ],
+  },
+  {
     name: "AloChef Landing Page",
     kind: "web",
     description:
@@ -323,6 +264,48 @@ export const projects: Project[] = [
       "/projects/homs-avenue/1.png",
       "/projects/homs-avenue/2.png",
       "/projects/homs-avenue/3.png",
+    ],
+  },
+  {
+    name: "Reusable Components",
+    kind: "web",
+    description:
+      "A reusable component library and playground focused on adaptable UI building blocks, fast composition, and practical developer ergonomics.",
+    github: "https://github.com/NajiAlkhudari/componentReusable-and-basic-test",
+    demo: "https://component-reusable.vercel.app/",
+    techStack: ["React js", "Next.js", "Tailwind CSS", "TypeScript"],
+    slides: [
+      {
+        src: "/component.png",
+        alt: "Reusable Components showcase screen",
+        objectPosition: "top",
+      },
+      {
+        src: "/component.png",
+        alt: "Reusable Components component gallery",
+        objectPosition: "center",
+      },
+    ],
+  },
+  {
+    name: "To Do",
+    kind: "web",
+    description:
+      "A focused task manager with a clean workflow for organizing daily work, tracking progress, and keeping the interface lightweight.",
+    github: "https://github.com/NajiAlkhudari/todo",
+    demo: "https://todo-eosin-iota.vercel.app/",
+    techStack: ["React js", "TypeScript", "Tailwind CSS", "UI States"],
+    slides: [
+      {
+        src: "/list.png",
+        alt: "To Do project task list screen",
+        objectPosition: "top",
+      },
+      {
+        src: "/list.png",
+        alt: "To Do project task details",
+        objectPosition: "center",
+      },
     ],
   },
 ];

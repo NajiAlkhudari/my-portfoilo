@@ -23,6 +23,8 @@ const hiddenBrowserProjectLabels = new Set([
   "m.b.k.project",
 ]);
 
+const containBrowserProjects = new Set(["Wiket"]);
+
 function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
   const shouldReduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,6 +32,8 @@ function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
   const browserProjectLabel = `${projectName
     .toLowerCase()
     .replace(/\s+/g, "-")}.project`;
+  const shouldContainImage =
+    frameKind === "mobile" || containBrowserProjects.has(projectName);
 
   useEffect(() => {
     if (shouldReduceMotion || slideCount < 2) {
@@ -82,7 +86,7 @@ function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
             fill
             sizes={frameKind === "mobile" ? "(max-width: 768px) 70vw, 24vw" : "(max-width: 1024px) 92vw, 42vw"}
             className={
-              frameKind === "mobile"
+              shouldContainImage
                 ? "object-contain transition-opacity duration-500"
                 : "object-cover transition-opacity duration-500"
             }
@@ -109,22 +113,6 @@ function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
               >
                 <ChevronRight size={16} />
               </button>
-              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-2 backdrop-blur">
-                {slides.map((slide, index) => (
-                  <button
-                    key={`${projectName}-${slide.src}-${index}`}
-                    type="button"
-                    aria-label={`Go to ${projectName} slide ${index + 1}`}
-                    onClick={() => goToSlide(index)}
-                    className={[
-                      "h-2.5 rounded-full transition-all",
-                      index === activeIndex
-                        ? "w-6 bg-white"
-                        : "w-2.5 bg-white/45 hover:bg-white/70",
-                    ].join(" ")}
-                  />
-                ))}
-              </div>
             </>
           ) : null}
         </div>
@@ -167,6 +155,13 @@ function getFullstackSlides(project: Project, slides: ReturnType<typeof getProje
     };
   }
 
+  if (project.name === "Wiket") {
+    return {
+      webSlides: slides,
+      mobileSlides: [],
+    };
+  }
+
   return {
     webSlides: slides.slice(0, 3),
     mobileSlides: slides.slice(3, 6),
@@ -205,7 +200,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       ].join(" ")}
     >
       {project.kind === "fullstack" ? (
-        <div className="grid items-start gap-8 xl:grid-cols-[1.5fr_0.95fr]">
+        <div
+          className={
+            mobileSlides.length
+              ? "grid items-start gap-8 xl:grid-cols-[1.5fr_0.95fr]"
+              : "grid gap-8"
+          }
+        >
           {webSlides.length ? (
             <ProjectSlider
               projectName={project.name}
