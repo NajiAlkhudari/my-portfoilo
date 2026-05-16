@@ -18,10 +18,18 @@ type SliderProps = {
   frameKind: "web" | "mobile";
 };
 
+const hiddenBrowserProjectLabels = new Set([
+  "a-class-transportation.project",
+  "m.b.k.project",
+]);
+
 function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
   const shouldReduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const slideCount = slides.length;
+  const browserProjectLabel = `${projectName
+    .toLowerCase()
+    .replace(/\s+/g, "-")}.project`;
 
   useEffect(() => {
     if (shouldReduceMotion || slideCount < 2) {
@@ -55,7 +63,9 @@ function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
             <span className="browser-dot bg-emerald-400" />
           </div>
           <div className="browser-address">
-            {projectName.toLowerCase().replace(/\s+/g, "-")}.project
+            {hiddenBrowserProjectLabels.has(browserProjectLabel)
+              ? ""
+              : browserProjectLabel}
           </div>
         </div>
       ) : (
