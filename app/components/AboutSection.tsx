@@ -17,7 +17,7 @@ const highlights = [
 
 export default function AboutSection() {
   return (
-    <section id="about" data-section className="section-shell">
+    <section id="about" data-section className="section-shell offscreen-section">
       <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
         <div className="space-y-6">
           <SectionHeading

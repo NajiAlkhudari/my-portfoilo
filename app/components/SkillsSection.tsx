@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Database, Monitor, Smartphone, Wrench } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { skillCategories } from "../data/portfolio";
@@ -16,7 +16,7 @@ export default function SkillsSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="skills" data-section className="section-shell">
+    <section id="skills" data-section className="section-shell offscreen-section">
       <SectionHeading
         eyebrow="Skills"
         title="My technical stack across web, mobile, and backend."
@@ -24,25 +24,24 @@ export default function SkillsSection() {
         centered
       />
 
-      <motion.div
+      <m.div
         initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
         whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="mt-14 grid gap-6 md:grid-cols-2"
       >
-        {skillCategories.map((category, index) => {
+        {skillCategories.map((category) => {
           const Icon = iconMap[category.icon];
 
           return (
-            <motion.article
+            <m.article
               key={category.title}
               initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
               whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{
                 duration: 0.65,
-                delay: shouldReduceMotion ? 0 : index * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="rounded-[2rem] border border-white/10 bg-[rgb(var(--surface)/0.68)] p-6 shadow-[0_20px_60px_rgba(10,15,30,0.2)] backdrop-blur"
@@ -71,10 +70,10 @@ export default function SkillsSection() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+            </m.article>
           );
         })}
-      </motion.div>
+      </m.div>
     </section>
   );
 }

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { startTransition, useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { Project, projects } from "../data/portfolio";
@@ -34,6 +34,11 @@ function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
     .replace(/\s+/g, "-")}.project`;
   const shouldContainImage =
     frameKind === "mobile" || containBrowserProjects.has(projectName);
+  const imageSizes =
+    frameKind === "mobile"
+      ? "(max-width: 768px) 72vw, 24vw"
+      : "(max-width: 1280px) 92vw, 44vw";
+  const activeSlide = slides[activeIndex];
 
   useEffect(() => {
     if (shouldReduceMotion || slideCount < 2) {
@@ -54,8 +59,6 @@ function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
       setActiveIndex((nextIndex + slideCount) % slideCount);
     });
   };
-
-  const activeSlide = slides[activeIndex];
 
   return (
     <div className={frameKind === "mobile" ? "phone-frame" : "browser-frame"}>
@@ -84,7 +87,9 @@ function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
             src={activeSlide.src}
             alt={activeSlide.alt}
             fill
-            sizes={frameKind === "mobile" ? "(max-width: 768px) 70vw, 24vw" : "(max-width: 1024px) 92vw, 42vw"}
+            loading="lazy"
+            quality={frameKind === "mobile" ? 64 : 70}
+            sizes={imageSizes}
             className={
               shouldContainImage
                 ? "object-contain transition-opacity duration-500"
@@ -168,7 +173,7 @@ function getFullstackSlides(project: Project, slides: ReturnType<typeof getProje
   };
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project }: { project: Project }) {
   const shouldReduceMotion = useReducedMotion();
   const slides = getProjectSlides(project);
   const { webSlides, mobileSlides } =
@@ -183,13 +188,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       : "Web Project";
 
   return (
-    <motion.article
+    <m.article
       initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
       whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.16 }}
       transition={{
         duration: 0.7,
-        delay: shouldReduceMotion ? 0 : index * 0.08,
         ease: [0.22, 1, 0.36, 1],
       }}
       className={[
@@ -277,7 +281,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
         ))}
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -285,8 +289,8 @@ export default function ProjectsSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="projects" data-section className="section-shell">
-      <motion.div
+    <section id="projects" data-section className="section-shell offscreen-section">
+      <m.div
         initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
         whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -296,11 +300,11 @@ export default function ProjectsSection() {
           eyebrow="Projects"
           centered
         />
-      </motion.div>
+      </m.div>
 
       <div className="mt-14 grid gap-8 xl:grid-cols-2">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.name} project={project} index={index} />
+        {projects.map((project) => (
+          <ProjectCard key={project.name} project={project} />
         ))}
       </div>
     </section>

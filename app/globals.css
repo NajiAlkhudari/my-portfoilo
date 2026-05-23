@@ -62,6 +62,11 @@ button {
   scroll-margin-top: 7rem;
 }
 
+.offscreen-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1200px;
+}
+
 .aurora-blur {
   filter: blur(80px);
   opacity: 0.9;

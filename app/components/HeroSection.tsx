@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, Github, Linkedin } from "lucide-react";
 import { socialLinks } from "../data/portfolio";
 import { useTypingText } from "../hooks/useTypingText";
@@ -27,7 +27,7 @@ export default function HeroSection() {
       <div className="aurora-blur absolute inset-x-[18%] top-[10%] h-72 rounded-full bg-gradient-to-r from-accent-blue/20 to-accent-purple/20" />
 
       <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -80,9 +80,9 @@ export default function HeroSection() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
           transition={{
@@ -102,12 +102,14 @@ export default function HeroSection() {
                   width={1205}
                   height={1795}
                   priority
+                  quality={82}
+                  sizes="(max-width: 768px) 88vw, (max-width: 1200px) 46vw, 34vw"
                   className="h-auto w-full rounded-[1.3rem] object-cover"
                 />
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -8,11 +8,15 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-heading",
+  display: "swap",
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 export default function RootLayout({

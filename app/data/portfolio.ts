@@ -128,7 +128,7 @@ export const projects: Project[] = [
     description:
       "A food ordering platform connecting users with authentic home kitchens in Homs. Built with Kotlin Multiplatform (no shared UI) — delivering a fully native Android app and a fully native iOS app from a shared business logic layer. Features real-time order tracking, Google Maps integration, and push notifications.",
     github: "https://github.com/NajiAlkhudari",
-    demo: "/projects/alochef/Log_in.png",
+    demo: "/projects/alochef/Log_in.webp",
     techStack: [
       "Kotlin Multiplatform",
       "Android (Native)",
@@ -140,32 +140,32 @@ export const projects: Project[] = [
     ],
     slides: [
       {
-        src: "/projects/alochef/Log_in.png",
+        src: "/projects/alochef/Log_in.webp",
         alt: "AloChef login screen",
         objectPosition: "center",
       },
       {
-        src: "/projects/alochef/home-2.png",
+        src: "/projects/alochef/home-2.webp",
         alt: "AloChef home screen",
         objectPosition: "center",
       },
       {
-        src: "/projects/alochef/Order_details.png",
+        src: "/projects/alochef/Order_details.webp",
         alt: "AloChef order details screen",
         objectPosition: "center",
       },
       {
-        src: "/projects/alochef/Cart.png",
+        src: "/projects/alochef/Cart.webp",
         alt: "AloChef cart screen",
         objectPosition: "center",
       },
       {
-        src: "/projects/alochef/Create_support_requests.png",
+        src: "/projects/alochef/Create_support_requests.webp",
         alt: "AloChef support requests screen",
         objectPosition: "center",
       },
       {
-        src: "/projects/alochef/Order_details-3.png",
+        src: "/projects/alochef/Order_details-3.webp",
         alt: "AloChef order details follow-up screen",
         objectPosition: "center",
       },
@@ -237,11 +237,11 @@ export const projects: Project[] = [
       "Responsive Design",
     ],
     images: [
-      "/projects/alochef-landing/1.png",
-      "/projects/alochef-landing/2.png",
-      "/projects/alochef-landing/3.png",
-      "/projects/alochef-landing/4.png",
-      "/projects/alochef-landing/5.png",
+      "/projects/alochef-landing/1.webp",
+      "/projects/alochef-landing/2.webp",
+      "/projects/alochef-landing/3.webp",
+      "/projects/alochef-landing/4.webp",
+      "/projects/alochef-landing/5.webp",
     ],
   },
   {
