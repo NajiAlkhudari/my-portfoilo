@@ -12,6 +12,7 @@ const highlights = [
   {
     label: "Background",
     value: "B.S. in Information Technology Engineering, 2023",
+     
   },
 ];
 
