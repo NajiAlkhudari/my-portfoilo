@@ -28,7 +28,7 @@ export default function HeroSection() {
 
       <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
         <m.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+          initial={shouldReduceMotion ? false : { opacity: 1, y: 18 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10"
@@ -83,7 +83,7 @@ export default function HeroSection() {
         </m.div>
 
         <m.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 40, scale: 0.96 }}
+          initial={shouldReduceMotion ? false : { opacity: 1, y: 24, scale: 0.985 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
           transition={{
             duration: 0.9,
