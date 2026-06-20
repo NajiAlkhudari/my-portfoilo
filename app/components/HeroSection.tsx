@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { m, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, Github, Linkedin } from "lucide-react";
+import heroPortrait from "@/public/naji.png";
 import { socialLinks } from "../data/portfolio";
 import { useTypingText } from "../hooks/useTypingText";
 
@@ -97,7 +98,7 @@ export default function HeroSection() {
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[rgb(var(--surface-strong)/0.72)] p-4 shadow-[0_24px_80px_rgba(10,15,30,0.35)]">
               <div className="rounded-[1.6rem] border border-white/10 bg-gradient-to-br from-white/6 to-white/[0.02] p-4">
                 <Image
-                  src="/naji.png"
+                  src={heroPortrait}
                   alt="Portrait of Naji Alkhudari"
                   width={1205}
                   height={1795}
