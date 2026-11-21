@@ -1,146 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { startTransition, useEffect, useState } from "react";
-import { m, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from "lucide-react";
+import { FaAppStoreIos } from "react-icons/fa";
 import SectionHeading from "./SectionHeading";
-import { Project, projects } from "../data/portfolio";
+import { Project, ProjectKind, ProjectSlide, projects } from "../data/portfolio";
 
-type SliderProps = {
-  projectName: string;
-  slides: {
-    src: string;
-    alt: string;
-    objectPosition?: string;
-  }[];
-  frameKind: "web" | "mobile";
+const projectLabels: Record<ProjectKind, string> = {
+  fullstack: "Full stack",
+  mobile: "Mobile app",
+  web: "Web project",
 };
 
-const hiddenBrowserProjectLabels = new Set([
-  "a-class-transportation.project",
-  "m.b.k.project",
-]);
-
-const containBrowserProjects = new Set(["Wiket"]);
-
-function ProjectSlider({ projectName, slides, frameKind }: SliderProps) {
-  const shouldReduceMotion = useReducedMotion();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const slideCount = slides.length;
-  const browserProjectLabel = `${projectName
-    .toLowerCase()
-    .replace(/\s+/g, "-")}.project`;
-  const shouldContainImage =
-    frameKind === "mobile" || containBrowserProjects.has(projectName);
-  const imageSizes =
-    frameKind === "mobile"
-      ? "(max-width: 768px) 72vw, 24vw"
-      : "(max-width: 1280px) 92vw, 44vw";
-  const activeSlide = slides[activeIndex];
-
-  useEffect(() => {
-    if (shouldReduceMotion || slideCount < 2) {
-      return;
-    }
-
-    const interval = window.setInterval(() => {
-      startTransition(() => {
-        setActiveIndex((current) => (current + 1) % slideCount);
-      });
-    }, 3600);
-
-    return () => window.clearInterval(interval);
-  }, [shouldReduceMotion, slideCount]);
-
-  const goToSlide = (nextIndex: number) => {
-    startTransition(() => {
-      setActiveIndex((nextIndex + slideCount) % slideCount);
-    });
-  };
-
-  return (
-    <div className={frameKind === "mobile" ? "phone-frame" : "browser-frame"}>
-      {frameKind === "web" ? (
-        <div className="browser-toolbar">
-          <div className="flex items-center gap-2">
-            <span className="browser-dot bg-rose-400" />
-            <span className="browser-dot bg-amber-300" />
-            <span className="browser-dot bg-emerald-400" />
-          </div>
-          <div className="browser-address">
-            {hiddenBrowserProjectLabels.has(browserProjectLabel)
-              ? ""
-              : browserProjectLabel}
-          </div>
-        </div>
-      ) : (
-        <div className="phone-shell">
-          <span className="phone-notch" />
-        </div>
-      )}
-
-      <div className={frameKind === "mobile" ? "phone-screen" : "browser-screen"}>
-        <div className="relative h-full overflow-hidden">
-          <Image
-            src={activeSlide.src}
-            alt={activeSlide.alt}
-            fill
-            loading="lazy"
-            quality={frameKind === "mobile" ? 64 : 70}
-            sizes={imageSizes}
-            className={
-              shouldContainImage
-                ? "object-contain transition-opacity duration-500"
-                : "object-cover transition-opacity duration-500"
-            }
-            style={{ objectPosition: activeSlide.objectPosition ?? "center" }}
-          />
-
-          {slideCount > 1 ? (
-            <>
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[rgba(10,15,30,0.42)] to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[rgba(10,15,30,0.42)] to-transparent" />
-              <button
-                type="button"
-                aria-label={`Previous ${projectName} slide`}
-                onClick={() => goToSlide(activeIndex - 1)}
-                className="slider-button left-3"
-              >
-                <ChevronLeft size={16} />
-              </button>
-              <button
-                type="button"
-                aria-label={`Next ${projectName} slide`}
-                onClick={() => goToSlide(activeIndex + 1)}
-                className="slider-button right-3"
-              >
-                <ChevronRight size={16} />
-              </button>
-            </>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function getProjectSlides(project: Project) {
-  if (project.slides?.length) {
-    return project.slides;
-  }
-
-  if (project.images?.length) {
-    return project.images.map((src, index) => ({
-      src,
-      alt: `${project.name} screen ${index + 1}`,
-      objectPosition: "center",
-    }));
-  }
-
-  return [];
-}
+const filters = [
+  { value: "all", label: "All projects" },
+  { value: "fullstack", label: "Full stack" },
+  { value: "mobile", label: "Mobile" },
+  { value: "web", label: "Web" },
+] as const;
 
 const taskLogWebImages = new Set([
   "1754397845835.jpeg",
@@ -148,164 +26,151 @@ const taskLogWebImages = new Set([
   "1754397859586.jpeg",
 ]);
 
-function getFullstackSlides(project: Project, slides: ReturnType<typeof getProjectSlides>) {
+function ProjectGallery({
+  label,
+  slides,
+  mobile = false,
+}: {
+  label: string;
+  slides: ProjectSlide[];
+  mobile?: boolean;
+}) {
+  const [index, setIndex] = useState(0);
+  const slide = slides[index];
+
+  return (
+    <figure className={mobile ? "gallery gallery-mobile" : "gallery"}>
+      <div className="gallery-image">
+        <Image
+          src={slide.src}
+          alt={slide.alt}
+          fill
+          sizes={mobile ? "(max-width: 430px) 36vw, 190px" : "(max-width: 760px) 92vw, 510px"}
+          style={{ objectPosition: slide.objectPosition }}
+        />
+      </div>
+      {(label || slides.length > 1) && (
+        <figcaption className="gallery-caption">
+          {label && <span className="gallery-label">{label}</span>}
+          {slides.length > 1 && (
+            <div className="gallery-controls" role="group" aria-label={label ? `${label} screenshots` : "Screenshots"}>
+              <button
+                type="button"
+                className="icon-button"
+                aria-label={`Previous screenshot${label ? ` for ${label}` : ""}`}
+                onClick={() => setIndex((current) => (current + slides.length - 1) % slides.length)}
+              >
+                <ArrowLeft size={16} aria-hidden="true" />
+              </button>
+              <span aria-live="polite" aria-atomic="true">{index + 1} / {slides.length}</span>
+              <button
+                type="button"
+                className="icon-button"
+                aria-label={`Next screenshot${label ? ` for ${label}` : ""}`}
+                onClick={() => setIndex((current) => (current + 1) % slides.length)}
+              >
+                <ArrowRight size={16} aria-hidden="true" />
+              </button>
+            </div>
+          )}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+function ProjectMedia({ project }: { project: Project }) {
+  if (project.galleries) {
+    return (
+      <div className="project-media media-pair">
+        {project.galleries.map(({ label, slides }) => (
+          <ProjectGallery key={label} label={label} slides={slides} mobile />
+        ))}
+      </div>
+    );
+  }
+
+  const slides = project.slides ?? project.images?.map((src, index) => ({
+    src,
+    alt: `${project.name} screen ${index + 1}`,
+  })) ?? [];
+
   if (project.name === "Task Log") {
-    return {
-      webSlides: slides.filter((slide) =>
-        taskLogWebImages.has(slide.src.split("/").pop() ?? "")
-      ),
-      mobileSlides: slides.filter(
-        (slide) => !taskLogWebImages.has(slide.src.split("/").pop() ?? "")
-      ),
-    };
+    const isWeb = (slide: ProjectSlide) => taskLogWebImages.has(slide.src.split("/").pop() ?? "");
+    return (
+      <div className="project-media media-combined">
+        <ProjectGallery label="Dashboard" slides={slides.filter(isWeb)} />
+        <ProjectGallery label="Mobile app" slides={slides.filter((slide) => !isWeb(slide))} mobile />
+      </div>
+    );
   }
 
-  if (project.name === "Wiket") {
-    return {
-      webSlides: slides,
-      mobileSlides: [],
-    };
-  }
+  if (!slides.length) return null;
 
-  return {
-    webSlides: slides.slice(0, 3),
-    mobileSlides: slides.slice(3, 6),
-  };
+  return (
+    <div className="project-media">
+      <ProjectGallery label="" slides={slides} mobile={project.kind === "mobile"} />
+    </div>
+  );
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const shouldReduceMotion = useReducedMotion();
-  const slides = getProjectSlides(project);
-  const { webSlides, mobileSlides } =
-    project.kind === "fullstack"
-      ? getFullstackSlides(project, slides)
-      : { webSlides: [], mobileSlides: [] };
-  const projectTypeLabel =
-    project.kind === "mobile"
-      ? "Mobile App"
-      : project.kind === "fullstack"
-      ? "Full-Stack System"
-      : "Web Project";
-
   return (
-    <m.article
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
-      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.16 }}
-      transition={{
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={[
-        "project-card group rounded-[2rem] border border-white/10 bg-[rgb(var(--surface)/0.72)] shadow-[0_22px_70px_rgba(10,15,30,0.24)] backdrop-blur",
-        project.kind === "fullstack"
-          ? "p-6 lg:p-7 xl:col-span-2"
-          : "p-5",
-      ].join(" ")}
-    >
-      {project.kind === "fullstack" ? (
-        <div
-          className={
-            mobileSlides.length
-              ? "grid items-start gap-8 xl:grid-cols-[1.5fr_0.95fr]"
-              : "grid gap-8"
-          }
-        >
-          {webSlides.length ? (
-            <ProjectSlider
-              projectName={project.name}
-              slides={webSlides}
-              frameKind="web"
-            />
-          ) : null}
-          {mobileSlides.length ? (
-            <ProjectSlider
-              projectName={project.name}
-              slides={mobileSlides}
-              frameKind="mobile"
-            />
-          ) : null}
-        </div>
-      ) : (
-        <ProjectSlider
-          projectName={project.name}
-          slides={slides}
-          frameKind={project.kind}
-        />
-      )}
-
-      <div className="mt-6 flex items-center justify-between gap-4">
-        <div>
-          <p className="text-sm uppercase tracking-[0.28em] text-sky-300/70">
-            {projectTypeLabel}
-          </p>
-          <h3 className="mt-2 font-heading text-2xl font-bold text-[rgb(var(--text))]">
-            {project.name}
-          </h3>
-        </div>
-
-        <div className="flex items-center gap-3">
-          {project.github ? (
-            <Link
-              href={project.github}
-              target="_blank"
-              className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[rgb(var(--text))] transition hover:-translate-y-0.5 hover:border-accent-blue/50 hover:text-accent-blue"
-            >
-              <Github size={18} />
-            </Link>
-          ) : null}
-          {project.demo ? (
-            <Link
-              href={project.demo}
-              target="_blank"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-[rgb(var(--text))] transition hover:-translate-y-0.5 hover:border-accent-purple/50 hover:text-accent-purple"
-            >
-              Demo
-              <ExternalLink size={16} />
-            </Link>
-          ) : null}
-        </div>
+    <article className={`project-card${project.featured ? " project-featured" : ""}`}>
+      <div className="project-info">
+        <p className="eyebrow">{project.featured ? "Featured project" : projectLabels[project.kind]}</p>
+        <h3>{project.name}</h3>
+        <p className="project-description">{project.description}</p>
+        {project.techStack.length > 0 && (
+          <ul className="tag-list">
+            {project.techStack.map((tech) => <li key={tech}>{tech}</li>)}
+          </ul>
+        )}
+        {(project.demo || project.appStore || project.github) && (
+          <div className="actions project-links">
+            {project.demo && (
+              <a className="button" href={project.demo} target="_blank" rel="noreferrer">
+                {project.demoLabel ?? (project.demo.startsWith("/") ? "View screenshot" : "Website")}
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            )}
+            {project.appStore && (
+              <a className="button" href={project.appStore} target="_blank" rel="noreferrer" aria-label={`${project.name} on the App Store`}>
+                <FaAppStoreIos size={17} aria-hidden="true" /> App Store
+              </a>
+            )}
+            {project.github && (
+              <a className="button" href={project.github} target="_blank" rel="noreferrer">
+                <Github size={16} aria-hidden="true" /> GitHub
+              </a>
+            )}
+          </div>
+        )}
       </div>
-
-      <p className="mt-4 text-base leading-7 text-[rgb(var(--muted))]">
-        {project.description}
-      </p>
-
-      <div className="mt-6 flex flex-wrap gap-3">
-        {project.techStack.map((item) => (
-          <span
-            key={`${project.name}-${item}`}
-            className="rounded-full border border-white/10 bg-black/15 px-3.5 py-2 text-sm text-[rgb(var(--text))]"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-    </m.article>
+      <ProjectMedia project={project} />
+    </article>
   );
 }
 
 export default function ProjectsSection() {
-  const shouldReduceMotion = useReducedMotion();
+  const [filter, setFilter] = useState<(typeof filters)[number]["value"]>("all");
+  const visibleProjects = filter === "all" ? projects : projects.filter((project) => project.kind === filter);
 
   return (
-    <section id="projects" data-section className="section-shell offscreen-section">
-      <m.div
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-        whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <SectionHeading
-          eyebrow="Projects"
-          centered
-        />
-      </m.div>
-
-      <div className="mt-14 grid gap-8 xl:grid-cols-2">
-        {projects.map((project) => (
-          <ProjectCard key={project.name} project={project} />
-        ))}
+    <section id="projects" className="section-shell work-section">
+      <div className="work-header">
+        <SectionHeading title="Selected work" description="Web apps, mobile apps, and the systems behind them." />
+        <div className="project-filters" role="group" aria-label="Filter projects">
+          {filters.map(({ value, label }) => (
+            <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <p className="sr-only" role="status">{visibleProjects.length} projects shown</p>
+      <div className="project-grid">
+        {visibleProjects.map((project) => <ProjectCard key={project.name} project={project} />)}
       </div>
     </section>
   );

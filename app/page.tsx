@@ -5,11 +5,11 @@ import SkillsSection from "./components/SkillsSection";
 
 export default function Home() {
   return (
-    <main className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <main id="main-content" className="site-container">
       <HeroSection />
+      <ProjectsSection />
       <AboutSection />
       <SkillsSection />
-      <ProjectsSection />
     </main>
   );
 }

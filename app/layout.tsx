@@ -16,6 +16,7 @@ export default function RootLayout({
     >
       <head />
       <body className="font-body text-[rgb(var(--text))] antialiased">
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <Providers>
           <Navbar />
           {children}

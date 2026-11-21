@@ -4,13 +4,11 @@ export const socialLinks = {
 };
 
 export const navItems = [
-  { label: "Home", href: "#home", sectionId: "home" },
-  { label: "About", href: "#about", sectionId: "about" },
-  { label: "Skills", href: "#skills", sectionId: "skills" },
-  { label: "Projects", href: "#projects", sectionId: "projects" },
+  { label: "Work", href: "#projects" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
 ] as const;
-
-export const projectCategories = ["web", "mobile", "fullstack", "landing"] as const;
 
 export const skillCategories = [
   {
@@ -79,12 +77,67 @@ export type Project = {
   description: string;
   github: string;
   demo: string;
+  demoLabel?: string;
+  featured?: boolean;
+  appStore?: string;
   techStack: string[];
+  galleries?: {
+    label: string;
+    slides: ProjectSlide[];
+  }[];
   slides?: ProjectSlide[];
   images?: string[];
 };
 
 export const projects: Project[] = [
+  {
+    name: "Amanak Way",
+    featured: true,
+    kind: "fullstack",
+    description:
+      "A school transportation platform with a school dashboard and separate apps for parents and bus supervisors. Parents can see the bus location, follow their children's trips, and receive boarding, arrival, and drop-off notifications. Supervisors can view assigned routes and record when students board and leave the bus, even when connectivity drops.",
+    github: "",
+    demo: "https://www.amanakway.com",
+    demoLabel: "Website",
+    appStore: "https://apps.apple.com/app/amanak-way/id6809785415",
+    techStack: [],
+    galleries: [
+      {
+        label: "Parents App",
+        slides: [
+          {
+            src: "/projects/amanak-way/parents-live-trip.jpeg",
+            alt: "Parents app with a school trip map and progress timeline",
+          },
+          {
+            src: "/projects/amanak-way/parents-trip-history.jpeg",
+            alt: "Parents app with past trips and recorded boarding and arrival times",
+          },
+          {
+            src: "/projects/amanak-way/parents-weekly-summary.jpg",
+            alt: "Parents app with student trip statuses and a weekly summary",
+          },
+        ],
+      },
+      {
+        label: "Supervisor App",
+        slides: [
+          {
+            src: "/projects/amanak-way/supervisor-routes.jpg",
+            alt: "Supervisor app listing morning and return routes",
+          },
+          {
+            src: "/projects/amanak-way/supervisor-route-map.jpg",
+            alt: "Supervisor app showing an assigned route on a map",
+          },
+          {
+            src: "/projects/amanak-way/supervisor-settings.jpg",
+            alt: "Supervisor app with language and appearance settings",
+          },
+        ],
+      },
+    ],
+  },
   {
     name: "ChefWay",
     kind: "mobile",
@@ -128,7 +181,8 @@ export const projects: Project[] = [
     description:
       "A food ordering platform connecting users with authentic home kitchens in Homs. Built with Kotlin Multiplatform (no shared UI) — delivering a fully native Android app and a fully native iOS app from a shared business logic layer. Features real-time order tracking, Google Maps integration, and push notifications.",
     github: "https://github.com/NajiAlkhudari",
-    demo: "/projects/alochef/Log_in.webp",
+    demo: "",
+    appStore: "https://apps.apple.com/app/alochef/id6785230791",
     techStack: [
       "Kotlin Multiplatform",
       "Android (Native)",
