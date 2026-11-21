@@ -31,7 +31,6 @@ export default function Navbar({ locale }: { locale: Locale }) {
     <header className="site-header">
       <div className="site-container header-inner">
         <a href="#home" className="wordmark">
-          <span aria-hidden="true">NA</span>
           {`${t.firstName} ${t.lastName}`}
         </a>
         <nav id="site-nav" className="site-nav" data-open={isOpen} aria-label={t.navigation}>

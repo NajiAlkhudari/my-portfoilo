@@ -1,8 +1,7 @@
-export default function SectionHeading({ title, description }: { title: string; description?: string }) {
+export default function SectionHeading({ title }: { title: string }) {
   return (
     <div className="section-heading">
       <h2>{title}</h2>
-      {description && <p>{description}</p>}
     </div>
   );
 }

@@ -123,7 +123,7 @@ function ProjectCard({ project, locale }: { project: Project; locale: Locale }) 
   return (
     <article className={`project-card${project.featured ? " project-featured" : ""}`}>
       <div className="project-info">
-        <p className="eyebrow">{project.featured ? t.featured : t.labels[project.kind]}</p>
+        <p className="project-type">{t.labels[project.kind]}</p>
         <h3><bdi>{name}</bdi></h3>
         <p className="project-description">{locale === "ar" ? project.descriptionAr : project.description}</p>
         {project.techStack.length > 0 && (
@@ -165,7 +165,7 @@ export default function ProjectsSection({ locale }: { locale: Locale }) {
   return (
     <section id="projects" className="section-shell work-section">
       <div className="work-header">
-        <SectionHeading title={t.title} description={t.intro} />
+        <SectionHeading title={t.title} />
         <div className="project-filters" role="group" aria-label={t.filter}>
           {filters.map((value) => (
             <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>

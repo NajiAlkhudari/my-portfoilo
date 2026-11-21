@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import heroPortrait from "@/public/naji.png";
 import { socialLinks } from "../data/portfolio";
 
@@ -10,8 +10,8 @@ export default function HeroSection({ locale }: { locale: Locale }) {
   return (
     <section id="home" className="hero">
       <div>
-        <p className="eyebrow hero-role">{t.role}</p>
-        <h1 className="hero-title">{t.firstName}<br />{t.lastName}<span>.</span></h1>
+        <p className="hero-role">{t.role}</p>
+        <h1 className="hero-title">{t.firstName}<br />{t.lastName}</h1>
         <p className="hero-intro">
           {t.intro}
         </p>
@@ -32,7 +32,6 @@ export default function HeroSection({ locale }: { locale: Locale }) {
           priority
           sizes="(max-width: 700px) 76vw, 350px"
         />
-        <figcaption><MapPin size={15} aria-hidden="true" /> {t.location}</figcaption>
       </figure>
     </section>
   );

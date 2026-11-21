@@ -78,8 +78,6 @@
   --accent: 76 48 170;
   --accent-ink: 255 255 255;
   --stage: 235 231 251;
-  --stage-grid: 76 48 170;
-  --lime: 227 245 149;
 }
 
 html.dark {
@@ -92,7 +90,6 @@ html.dark {
   --accent: 194 176 255;
   --accent-ink: 32 21 60;
   --stage: 45 37 63;
-  --stage-grid: 194 176 255;
 }
 
 html { scroll-behavior: smooth; }
@@ -149,22 +146,8 @@ body {
 }
 
 .wordmark {
-  display: inline-flex;
-  align-items: center;
-  gap: .75rem;
-  font-size: .9rem;
+  font-size: .95rem;
   font-weight: 700;
-}
-
-.wordmark span {
-  display: grid;
-  width: 2.45rem;
-  height: 2.45rem;
-  place-items: center;
-  border-radius: .6rem;
-  background: rgb(var(--accent));
-  color: rgb(var(--accent-ink));
-  font-family: var(--font-heading);
 }
 
 .site-nav, .header-controls, .actions {
@@ -207,26 +190,11 @@ body {
   scroll-margin-top: 5rem;
 }
 
-.eyebrow {
-  color: rgb(var(--accent));
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  line-height: 1.5;
-  text-transform: uppercase;
-}
-
+.project-type,
 .hero-role {
-  display: flex;
-  align-items: center;
-  gap: .65rem;
-}
-
-.hero-role::before {
-  width: 1.45rem;
-  height: 2px;
-  background: currentColor;
-  content: "";
+  color: rgb(var(--muted));
+  font-size: .875rem;
+  font-weight: 600;
 }
 
 .hero-title {
@@ -235,9 +203,7 @@ body {
   letter-spacing: -.075em;
 }
 
-.hero-title span { color: rgb(var(--accent)); }
-
-.hero-intro, .section-heading p, .about-copy {
+.hero-intro, .about-copy {
   max-width: 39rem;
   color: rgb(var(--muted));
   font-size: clamp(1rem, 1.7vw, 1.18rem);
@@ -288,21 +254,6 @@ body {
   object-position: center 33%;
 }
 
-.portrait figcaption {
-  position: absolute;
-  inset-inline-end: -.65rem;
-  bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: .45rem;
-  padding: .65rem .8rem;
-  border-radius: .4rem;
-  background: rgb(var(--lime));
-  color: #242811;
-  font-size: .82rem;
-  font-weight: 700;
-}
-
 .section-shell {
   padding-block: clamp(3rem, 6vw, 5rem);
   border-top: 1px solid rgb(var(--border));
@@ -314,7 +265,7 @@ body {
   letter-spacing: -.065em;
 }
 
-.section-heading p, .about-copy { margin-top: .75rem; }
+.about-copy { margin-top: .75rem; }
 
 .work-header {
   display: flex;
@@ -419,10 +370,6 @@ body {
   border-top: 1px solid rgb(var(--border));
   border-radius: 0 0 .95rem .95rem;
   background-color: rgb(var(--stage));
-  background-image:
-    linear-gradient(rgb(var(--stage-grid) / .09) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--stage-grid) / .09) 1px, transparent 1px);
-  background-size: 1.5rem 1.5rem;
 }
 
 .project-featured .project-media {
@@ -626,18 +573,13 @@ html[lang="ar"] {
   font-size: clamp(3.2rem, 7vw, 6.7rem);
 }
 
-:lang(ar) .eyebrow {
-  letter-spacing: normal;
-}
-
 .language-link {
   padding-inline: .75rem;
   white-space: nowrap;
 }
 
 @media (max-width: 430px) {
-  .header-inner, .header-controls, .wordmark { gap: .45rem; }
+  .header-inner, .header-controls { gap: .45rem; }
   .wordmark { font-size: .79rem; }
-  .wordmark span { width: 1.85rem; height: 1.85rem; }
   .language-link { padding-inline: .5rem; }
 }
