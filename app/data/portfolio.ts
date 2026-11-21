@@ -324,30 +324,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "Homs Avenue",
-    nameAr: "حمص أفنيو",
-    descriptionAr: "موقع عقاري ثنائي اللغة للتعريف بمجمّع سكني حديث في حمص. بُني باستخدام Next.js، ويعمل على مختلف الشاشات، ويرتبط بـ Google Search Console لمتابعة ظهوره في نتائج البحث.",
-    kind: "web",
-    description:
-      "A bilingual real estate landing page for a modern residential compound in Homs. Built with Next.js, connected to Google Search Console for SEO, and fully responsive across all devices.",
-    github: "",
-    demo: "https://www.avenuehoms.com/en",
-    techStack: [
-      "Next.js",
-      "Tailwind CSS",
-      "SEO",
-      "Google Search Console",
-      "Google Maps API",
-      "Responsive Design",
-      "i18n",
-    ],
-    images: [
-      "/projects/homs-avenue/1.png",
-      "/projects/homs-avenue/2.png",
-      "/projects/homs-avenue/3.png",
-    ],
-  },
-  {
     name: "Reusable Components",
     nameAr: "مكوّنات واجهة قابلة لإعادة الاستخدام",
     descriptionAr: "مكتبة مكوّنات واجهة مع صفحة لتجربتها. تسهّل بناء الواجهات من عناصر مرنة يسهل تركيبها وتكييفها.",
