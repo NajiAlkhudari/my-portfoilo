@@ -9,10 +9,13 @@ const iconMap = {
   wrench: Wrench,
 } as const;
 
-export default function SkillsSection() {
+import { copy, displayTechnology, Locale } from "../data/languages";
+
+export default function SkillsSection({ locale }: { locale: Locale }) {
+  const t = copy[locale];
   return (
     <section id="skills" className="section-shell">
-      <SectionHeading title="Technical skills" />
+      <SectionHeading title={t.skills.title} />
       <div className="skills-grid">
         {skillCategories.map(({ title, icon, skills }) => {
           const Icon = iconMap[icon];
@@ -20,9 +23,9 @@ export default function SkillsSection() {
           return (
             <article className="skill-group" key={title}>
               <Icon size={20} className="skill-icon" aria-hidden="true" />
-              <h3>{title}</h3>
+              <h3>{t.skills.categories[icon]}</h3>
               <ul className="tag-list">
-                {skills.map((skill) => <li key={skill}>{skill}</li>)}
+                {skills.map((skill) => <li key={skill}><bdi>{displayTechnology(skill, locale)}</bdi></li>)}
               </ul>
             </article>
           );

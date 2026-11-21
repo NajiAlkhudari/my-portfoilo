@@ -1,21 +1,22 @@
 import SectionHeading from "./SectionHeading";
 
-export default function AboutSection() {
+import { copy, Locale } from "../data/languages";
+
+export default function AboutSection({ locale }: { locale: Locale }) {
+  const t = copy[locale];
   return (
     <section id="about" className="section-shell about-layout">
       <div>
-        <SectionHeading title="About me" />
+        <SectionHeading title={t.about.title} />
         <p className="about-copy">
-          I’m a software engineer based in Homs, Syria. I work across frontend
-          development, backend APIs, and mobile apps. I focus on building
-          interfaces people can use easily and code teams can maintain.
+          {t.about.intro}
         </p>
       </div>
 
       <dl className="about-facts">
-        <div><dt>Based in</dt><dd>Homs, Syria</dd></div>
-        <div><dt>Education</dt><dd>B.S. in Information Technology Engineering, 2023</dd></div>
-        <div><dt>Open to</dt><dd>Full-time and freelance opportunities</dd></div>
+        <div><dt>{t.about.location}</dt><dd>{t.location}</dd></div>
+        <div><dt>{t.about.education}</dt><dd>{t.about.degree}</dd></div>
+        <div><dt>{t.about.availability}</dt><dd>{t.about.opportunities}</dd></div>
       </dl>
     </section>
   );

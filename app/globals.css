@@ -122,7 +122,7 @@ body {
   position: fixed;
   z-index: 20;
   top: .75rem;
-  left: .75rem;
+  inset-inline-start: .75rem;
   padding: .75rem 1rem;
   background: rgb(var(--surface));
   transform: translateY(-150%);
@@ -290,7 +290,7 @@ body {
 
 .portrait figcaption {
   position: absolute;
-  right: -.65rem;
+  inset-inline-end: -.65rem;
   bottom: 1rem;
   display: flex;
   align-items: center;
@@ -428,8 +428,11 @@ body {
 .project-featured .project-media {
   align-content: center;
   border-top: 0;
-  border-left: 1px solid rgb(var(--border));
-  border-radius: 0 .95rem .95rem 0;
+  border-inline-start: 1px solid rgb(var(--border));
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: .95rem;
+  border-end-end-radius: .95rem;
 }
 
 .media-pair, .media-combined {
@@ -588,7 +591,7 @@ body {
   .portrait { max-width: 22rem; width: min(80%, 22rem); justify-self: center; }
 
   .project-featured .project-media {
-    border-left: 0;
+    border-inline-start: 0;
     border-top: 1px solid rgb(var(--border));
     border-radius: 0 0 .95rem .95rem;
   }
@@ -604,4 +607,37 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0s !important; }
+}
+
+html[lang="ar"] {
+  --font-body: "Geeza Pro", Tahoma, "Segoe UI", Arial, sans-serif;
+  --font-heading: var(--font-body);
+}
+
+:lang(ar) .hero-title,
+:lang(ar) .section-heading h2,
+:lang(ar) .project-info h3,
+:lang(ar) .footer-callout h2 {
+  letter-spacing: normal;
+  line-height: 1.15;
+}
+
+:lang(ar) .hero-title {
+  font-size: clamp(3.2rem, 7vw, 6.7rem);
+}
+
+:lang(ar) .eyebrow {
+  letter-spacing: normal;
+}
+
+.language-link {
+  padding-inline: .75rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 430px) {
+  .header-inner, .header-controls, .wordmark { gap: .45rem; }
+  .wordmark { font-size: .79rem; }
+  .wordmark span { width: 1.85rem; height: 1.85rem; }
+  .language-link { padding-inline: .5rem; }
 }
