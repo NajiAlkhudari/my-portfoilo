@@ -324,6 +324,35 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Emesa Residential Complex",
+    nameAr: "مجمّع أميسا",
+    descriptionAr:
+      "موقع خدمي لمجمّع أميسا السكني في حمص. يتيح للسكان متابعة أخبار المجمّع ومشاريعه، وتصفّح إعلانات بيع العقارات وإيجارها، وإرسال البلاغات والمقترحات إلى لجنة المجمّع من دون حساب.",
+    kind: "web",
+    description:
+      "A community website for the Emesa residential complex in Homs. Residents can follow news and ongoing projects, browse property listings, and send reports or suggestions to the committee without creating an account.",
+    github: "",
+    demo: "https://www.emesa.info/",
+    techStack: [],
+    slides: [
+      {
+        src: "/projects/emesa/homepage.jpg",
+        alt: "Emesa homepage with an aerial view of the residential complex",
+        altAr: "الصفحة الرئيسية لموقع أميسا مع إطلالة جوية على المجمّع السكني",
+      },
+      {
+        src: "/projects/emesa/about.jpg",
+        alt: "About Emesa section showing the complex location near Homs",
+        altAr: "قسم التعريف بمجمّع أميسا وموقعه قرب حمص",
+      },
+      {
+        src: "/projects/emesa/reports.jpg",
+        alt: "Emesa website form for submitting a report or suggestion",
+        altAr: "نموذج تقديم بلاغ أو اقتراح على موقع أميسا",
+      },
+    ],
+  },
+  {
     name: "Reusable Components",
     nameAr: "مكوّنات واجهة قابلة لإعادة الاستخدام",
     descriptionAr: "مكتبة مكوّنات واجهة مع صفحة لتجربتها. تسهّل بناء الواجهات من عناصر مرنة يسهل تركيبها وتكييفها.",
